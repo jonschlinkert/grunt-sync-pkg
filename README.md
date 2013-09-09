@@ -28,14 +28,12 @@ Once that's done, add this line to your project's Gruntfile:
 grunt.loadNpmTasks('grunt-sync-pkg');
 ```
 
-If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
+If the plugin has been installed correctly, you should now be able to run `grunt sync` at the command line to run the `sync` task.
 
 [grunt]: http://gruntjs.com/
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 [package.json]: https://npmjs.org/doc/json.html
 
-## Usage
-In the command line, run the plugin with `grunt sync`.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
