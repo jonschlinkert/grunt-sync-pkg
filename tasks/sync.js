@@ -25,16 +25,27 @@ module.exports = function (grunt) {
       name: pkg.name,
       version: pkg.version,
       main: [pkg.main],
-      dependencies: pkg.dependencies || void 0,
-      devDependencies: pkg.devDependencies || void 0
+      include: []
     });
 
+    // Sync any properties listed in the "include" array.
+    options.include.forEach(function(key) {
+      options[key] = pkg[key];
+    });
+
+    // Format the 'main' property as an array for bower.json
     if (pkg.main || options.main) {
       options.main = _.union([], [pkg.main], (options.main || ['']));
     }
 
-    bower = JSON.stringify(_.extend(bower, options), null, 2);
-    grunt.file.write('bower.json', bower);
+    var props = _.extend(bower, options);
+    props = _.omit(props, options.exclude, ['exclude', 'include']);
+
+    if (!_.isString(pkg.main)) {
+      grunt.fail.warn('>>'.yellow + ' The "main" property is missing in package.json.'.bold);
+    }
+
+    grunt.file.write('bower.json', JSON.stringify(props, null, 2));
   });
 
 };
