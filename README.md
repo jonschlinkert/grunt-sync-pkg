@@ -1,14 +1,14 @@
 # grunt-sync-pkg [![NPM version](https://badge.fury.io/js/grunt-sync-pkg.png)](http://badge.fury.io/js/grunt-sync-pkg)  [![Build Status](true.png)](true)
 
-> Minimalist Grunt plugin to sync only basic properties between package.json and bower.json
+> Minimalist Grunt plugin to keep package.json and bower.json synchronized
 
-This plugin syncs the following properties from `package.json` to `bower.json`:
+By default, this plugin syncs the following properties from `package.json` to `bower.json`:
 
 * `name`
 * `version`
 * `main`
 
-Also, if a `bower.json` file does not exist, the plugin creates on first. There is no option to turn this off, since there is no reason to use the plugin if you aren't syncing with anything :-).
+Note that if a `bower.json` file does not exist, the plugin creates on first. There is no option to turn this off, since there is no reason to use the plugin if you aren't syncing with anything :-).
 
 
 ## Getting Started
@@ -29,7 +29,6 @@ grunt.loadNpmTasks('grunt-sync-pkg');
 If the plugin has been installed correctly, you should now be able to run `grunt sync` at the command line to run the `sync` task.
 
 ## Options
-
 ### include
 Type: `Array`
 Default: `['name', 'version', 'main']`
@@ -41,6 +40,12 @@ Type: `Array`
 Default: `undefined`
 
 Properties to exclude from syncing.
+
+### alt
+Type: `Obj`
+Default: `undefined`
+
+Specify an additional JSON file to sync, such as `myplugin.jquery.json`.
 
 
 ## Contributing
