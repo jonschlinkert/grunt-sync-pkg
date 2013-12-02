@@ -1,7 +1,7 @@
 {
   "name": "grunt-sync-pkg",
   "description": "Minimalist Grunt plugin to sync only basic properties between package.json and bower.json",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/jonschlinkert/grunt-sync-pkg",
   "author": {
     "name": "Jon Schlinkert",
@@ -26,6 +26,9 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "lodash": "~2.4.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",

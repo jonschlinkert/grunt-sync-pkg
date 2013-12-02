@@ -19,7 +19,7 @@ module.exports = function (grunt) {
 
     var bower = grunt.file.readJSON('bower.json');
     var pkg = grunt.file.readJSON('package.json');
-    var _ = grunt.util._;
+    var _ = require('lodash');
 
     var options = this.options({
       name: pkg.name,
@@ -38,14 +38,21 @@ module.exports = function (grunt) {
       options.main = _.union([], [pkg.main], (options.main || ['']));
     }
 
-    var props = _.extend(bower, options);
-    props = _.omit(props, options.exclude, ['exclude', 'include']);
+    var bowerProps = _.extend(bower, options);
+    bowerProps = _.omit(bowerProps, options.exclude, ['exclude', 'include', 'alt']);
 
     if (!_.isString(pkg.main)) {
       grunt.fail.warn('>>'.yellow + ' The "main" property is missing in package.json.'.bold);
     }
 
-    grunt.file.write('bower.json', JSON.stringify(props, null, 2));
+    grunt.file.write('bower.json', JSON.stringify(bowerProps, null, 2));
+
+    if(options.alt) {
+      var alt = grunt.file.readJSON(options.alt);
+      var altProps = _.extend(alt, options);
+      altProps = _.omit(altProps, options.exclude, ['exclude', 'include', 'alt', 'main']);
+      grunt.file.write(options.alt, JSON.stringify(altProps, null, 2));
+    }
   });
 
 };
